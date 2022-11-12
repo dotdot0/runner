@@ -1,0 +1,14 @@
+[Command]
+alias = "gitadd"
+program = "git"
+args = "add ."
+
+[Command]
+alias = "c"
+program = "code"
+args = "."
+
+[Command]
+alias = "ct"
+program = "cat"
+args = "main.rs"
