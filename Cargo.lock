@@ -71,6 +71,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "colorful"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0bca1619ff57dd7a56b58a8e25ef4199f123e78e503fe1653410350a1b98ae65"
+
+[[package]]
 name = "dirs"
 version = "4.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -193,6 +199,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "rainbow-text"
+version = "0.1.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a61879081484a5830a4f91aa642cf14be4c2171eea2d37080ebaff0ff8782690"
+dependencies = [
+ "termcolor",
+]
+
+[[package]]
 name = "redox_syscall"
 version = "0.2.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -217,10 +232,13 @@ name = "runner"
 version = "0.1.0"
 dependencies = [
  "clap",
+ "colorful",
  "dirs",
+ "rainbow-text",
  "serde",
  "serde_derive",
  "toml",
+ "user-error",
 ]
 
 [[package]]
@@ -306,6 +324,12 @@ name = "unicode-ident"
 version = "1.0.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6ceab39d59e4c9499d4e5a8ee0e2735b891bb7308ac83dfb4e80cad195c9f6f3"
+
+[[package]]
+name = "user-error"
+version = "1.2.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "07a91d0648d862a02d641c82292791accfe66d36df75d8149ebc9768f2e36863"
 
 [[package]]
 name = "version_check"

@@ -5,13 +5,13 @@ use serde_derive::Deserialize;
 
 
 #[derive(Debug, Deserialize)]
-pub struct Command{
+pub struct CommandUser{
   pub alias: String,
   pub program: String,
   pub args: String
 }
 
-impl Command{
+impl CommandUser{
   pub fn new() -> Self{
     Self{
       alias: String::new(),
@@ -19,9 +19,9 @@ impl Command{
       args: String::new()
     }
   }
-  pub fn parse_toml(&self, path: &str) -> Vec<Command>{
-    let mut commands: Vec<Command> = Vec::new();
-    let mut command: Option<Command> = None;
+  pub fn parse_toml(&self, path: &str) -> Vec<CommandUser>{
+    let mut commands: Vec<CommandUser> = Vec::new();
+    let mut command: Option<CommandUser> = None;
     let mut file = File::open(path).expect("Unable to open file");
     let mut buf: String = String::new();
     file.read_to_string(&mut buf);
