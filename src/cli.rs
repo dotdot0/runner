@@ -8,5 +8,14 @@ pub struct Cli{
   pub alias: String,
 
   #[clap(short='i', long)]
-  init: bool
+  ///Initialize a empty runner.toml file
+  init: bool,
+
+  #[clap(short='m', long)]
+  ///Show all the user defined mappings
+  mapping: bool,
+
+  #[clap(short='c', long)]
+  ///Path of the the config file/runner.toml
+  config: bool
 }
