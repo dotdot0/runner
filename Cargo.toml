@@ -1,5 +1,5 @@
 [package]
-name = "cli-unnamed"
+name = "runner"
 version = "0.1.0"
 edition = "2021"
 
@@ -9,3 +9,5 @@ edition = "2021"
 serde = "1.0.147"
 serde_derive = "1.0.147"
 toml = "0.5.9"
+clap = { version = "3.1.6", features = ["derive"] }
+dirs = "4.0.0"

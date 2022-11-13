@@ -12,3 +12,8 @@ args = "."
 alias = "ct"
 program = "cat"
 args = "main.rs"
+
+[Command]
+alias = "gitc"
+program = "git"
+args = "commit -m \"Inital Commit\""

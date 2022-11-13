@@ -19,7 +19,7 @@ impl Command{
       args: String::new()
     }
   }
-  pub fn parse_toml(&self, path: &str){
+  pub fn parse_toml(&self, path: &str) -> Vec<Command>{
     let mut commands: Vec<Command> = Vec::new();
     let mut command: Option<Command> = None;
     let mut file = File::open(path).expect("Unable to open file");
@@ -37,6 +37,10 @@ impl Command{
         commands.push(command.unwrap())
       }
     }
-    println!("{:#?}", commands)
+    commands
+  }
+
+  pub fn display_mapping(&self){
+    println!("{} -> {} {}", self.alias, self.program, self.args)
   }
 }
