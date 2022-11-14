@@ -31,7 +31,7 @@ args = "check"
 
 ## Installation
 ```
-cargo install runner
+cargo install runner-cli
 ```
 
 ## Initialize
