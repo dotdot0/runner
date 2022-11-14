@@ -11,7 +11,8 @@ use cli::Cli;
 use dirs::config_dir;
 use std::{process::Command, fs::File};
 use user_error::{UserFacingError, UFE};
-use rainbow_text::Rainbow;
+use rainbow_text::{Rainbow, Color};
+use execute::Execute;
 
 fn main() -> std::io::Result<()>{
    //Clap initialize
@@ -24,16 +25,40 @@ fn main() -> std::io::Result<()>{
    if args.alias.is_some(){
       let map_cmd = CommandUser::new().parse_toml(runner_path.as_str());
       let alias_user = args.alias.unwrap();
-      for cmd in map_cmd{
-         if cmd.alias == alias_user{
-            let result = Command::new(cmd.program).arg(cmd.args).output();
+      let map_allias: Vec<String> = map_cmd.iter().map(|cmd| {
+         cmd.alias.to_owned()
+      }).collect();
+      // println!("{:#?}", map_cmd);
+      // println!("{}", runner_path);
+      if map_cmd.len() > 0{
+         for cmd in map_cmd{
+            let user_args: Vec<&str> = cmd.args.split(" ").map(|a| {
+               a
+            }).collect();
+         if cmd.alias.trim() == alias_user.to_str(){ 
+               println!("Working!");
+               println!("{}", cmd.alias);
+               let mut result = Command::new(cmd.program);
+               for a in user_args{
+                  result.arg(a);
+               }
+               let output = result.execute_output().unwrap();
+               break;
+            }
+            else if !map_allias.contains(&alias_user){
+               println!("working!");
+               UserFacingError::new("Failed to run the command")
+                     .reason("You have not mapped the command in runner.toml file to a alias")
+                     .help("Register the alias to command in runner.toml file")
+                     .print();
+               continue;
+            }
          }
-         else{
-            UserFacingError::new("Failed to run the command")
-                  .reason("You have not mapped the command in runner.toml file to a alias")
-                  .help("Register the alias to command in runner.toml file")
-                  .print();
-         }
+      }
+      else{
+         UserFacingError::new("runner.toml file is empty")
+               .reason("You have not mapped any command in runner.toml")
+               .print();
       }
    }
 
@@ -57,7 +82,7 @@ fn main() -> std::io::Result<()>{
 
 
          "#;
-         let rainbow = Rainbow::default();
+         let rainbow = Rainbow::custom(vec![Color::Red, Color::Green]);
          rainbow.write(art)?;
        
        let file = File::create(format!("{}/runner.toml", config_dir.to_str().unwrap())).unwrap();
