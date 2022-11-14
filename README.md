@@ -84,3 +84,6 @@ alias =  "Shorter subcommand you want to use instead of the command"
 program = "CLI Program Name(like: git, cat, batcat, code, neofetch, cargo, python, node, npm etc.)"
 args = "Arguments you want to pass to the cli program"
 ```
+
+## Contribution
+### Have any suggestion or feature idea/request feel free to open a issue.
