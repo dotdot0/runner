@@ -98,6 +98,10 @@ fn main() -> std::io::Result<()>{
    }
 
    }
+
+   else if args.mapping{
+      CommandUser::new().display_mapping(&runner_path)
+   }
    Ok(())
    
 }

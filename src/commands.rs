@@ -3,7 +3,6 @@ use std::{fs::File, io::Read};
 use toml::Value;
 use serde_derive::Deserialize;
 
-
 #[derive(Debug, Deserialize)]
 pub struct CommandUser{
   pub alias: String,
@@ -40,7 +39,9 @@ impl CommandUser{
     commands
   }
 
-  pub fn display_mapping(&self){
-    println!("{} -> {} {}", self.alias, self.program, self.args)
+  pub fn display_mapping(&self, path: &str){
+    for cmd in self.parse_toml(path){
+      println!("{} -> {} {}", cmd.alias, cmd.program, cmd.args)
+    }
   }
 }
