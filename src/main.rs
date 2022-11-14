@@ -90,17 +90,20 @@ fn main() -> std::io::Result<()>{
 
 
          "#;
-         let rainbow = Rainbow::custom(vec![Color::Red, Color::Green]);
-         rainbow.write(art)?;
-       
-       let file = File::create(format!("{}/runner.toml", config_dir.to_str().unwrap())).unwrap();
-       println!("Created runner.toml file successfully!");
+      println!("{}", art); 
+      let file = File::create(format!("{}/runner.toml", config_dir.to_str().unwrap())).unwrap();
+      println!("Created runner.toml file successfully!");
    }
 
    }
 
    else if args.mapping{
       CommandUser::new().display_mapping(&runner_path)
+   }
+
+   else if args.config{
+      let path = config_dir.join("runner.toml");
+      println!("The path to your runner.toml file: {:#?}", path.as_path());
    }
    Ok(())
    
