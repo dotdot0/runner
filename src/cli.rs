@@ -16,6 +16,6 @@ pub struct Cli{
   pub mapping: bool,
 
   #[clap(short='c', long)]
-  ///Path of the the config file/runner.toml
+  ///Path of the the config file runner.toml
   pub config: bool
 }

@@ -41,7 +41,7 @@ impl CommandUser{
 
   pub fn display_mapping(&self, path: &str){
     for cmd in self.parse_toml(path){
-      println!("{} -> {} {}", cmd.alias, cmd.program, cmd.args)
+      println!("<ALIAS_NAME> : {} -> <COMMAND_MAPPED>: {} {}", cmd.alias, cmd.program, cmd.args)
     }
   }
 }

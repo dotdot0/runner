@@ -5,13 +5,12 @@ mod cli;
 extern crate colorful;
 
 use clap::Parser;
-use colorful::core::StrMarker;
+use colorful::{Color, Colorful};
 use commands::CommandUser;
 use cli::Cli;
 use dirs::config_dir;
 use std::{process::Command, fs::File};
 use user_error::{UserFacingError, UFE};
-use rainbow_text::{Rainbow, Color};
 use execute::Execute;
 
 fn main() -> std::io::Result<()>{
@@ -42,7 +41,7 @@ fn main() -> std::io::Result<()>{
             }).collect();
          
          //Check
-         if cmd.alias.trim() == alias_user.to_str(){ 
+         if cmd.alias.trim() == alias_user.as_str(){ 
                               let mut result = Command::new(cmd.program);
                for a in user_args{
                   result.arg(a);
@@ -90,7 +89,7 @@ fn main() -> std::io::Result<()>{
 
 
          "#;
-      println!("{}", art); 
+      println!("{}", art.gradient(Color::Green).bold()); 
       let file = File::create(format!("{}/runner.toml", config_dir.to_str().unwrap())).unwrap();
       println!("Created runner.toml file successfully!");
    }
