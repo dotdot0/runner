@@ -23,38 +23,45 @@ fn main() -> std::io::Result<()>{
    //Get all the user mapped commands
    let runner_path = format!("{}/runner.toml", config_dir.to_str().unwrap());
    if args.alias.is_some(){
+      //All parsed user mapped commands
       let map_cmd = CommandUser::new().parse_toml(runner_path.as_str());
+
+      //Alias argument by user
       let alias_user = args.alias.unwrap();
+
+      //All allias mapped by user
       let map_allias: Vec<String> = map_cmd.iter().map(|cmd| {
          cmd.alias.to_owned()
       }).collect();
-      // println!("{:#?}", map_cmd);
-      // println!("{}", runner_path);
+
+      //Check if runner.toml file is empty
       if map_cmd.len() > 0{
          for cmd in map_cmd{
             let user_args: Vec<&str> = cmd.args.split(" ").map(|a| {
                a
             }).collect();
+         
+         //Check
          if cmd.alias.trim() == alias_user.to_str(){ 
-               println!("Working!");
-               println!("{}", cmd.alias);
-               let mut result = Command::new(cmd.program);
+                              let mut result = Command::new(cmd.program);
                for a in user_args{
                   result.arg(a);
                }
                let output = result.execute_output().unwrap();
                break;
             }
+
+            //alias_user not defined
             else if !map_allias.contains(&alias_user){
-               println!("working!");
                UserFacingError::new("Failed to run the command")
                      .reason("You have not mapped the command in runner.toml file to a alias")
                      .help("Register the alias to command in runner.toml file")
                      .print();
-               continue;
+               break;
             }
          }
       }
+      //Empty runner.toml file case
       else{
          UserFacingError::new("runner.toml file is empty")
                .reason("You have not mapped any command in runner.toml")
@@ -62,6 +69,7 @@ fn main() -> std::io::Result<()>{
       }
    }
 
+   //Initialize a empty runner.toml file
    else if args.init {
        let path = config_dir.as_path().join("runner.toml");
        if path.as_path().exists(){
