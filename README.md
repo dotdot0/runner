@@ -79,7 +79,7 @@ runner --mapping
 ```toml
 
 [Command]
-alias: Shorter subcommand you want to use instead of the command
-program: CLI Program Name(like: git, cat, batcat, code, neofetch, cargo, python, node, npm etc.)
-args: Arguments you want to pass to the cli program
+alias: "Shorter subcommand you want to use instead of the command"
+program: "CLI Program Name(like: git, cat, batcat, code, neofetch, cargo, python, node, npm etc.)"
+args: "Arguments you want to pass to the cli program"
 ```
