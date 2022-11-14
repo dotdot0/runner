@@ -7,6 +7,7 @@ description = "A cli tool that let's you map commands to a shorter alias"
 license = "MIT"
 repository = "https://github.com/pratushrai0309/runner"
 keywords = ["cli", "clap", "productivity"]
+categories = ["command-line-interface"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -20,3 +21,10 @@ user-error = "1.2.8"
 colorful = "0.2.1"
 rainbow-text = "0.1.5"
 execute = "0.2.11"
+
+
+[profile.dev]
+opt-level = 0
+
+[profile.release]
+opt-level = 3
