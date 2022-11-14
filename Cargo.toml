@@ -1,5 +1,5 @@
 [package]
-name = "runner"
+name = "runner-cli"
 version = "0.1.0"
 edition = "2021"
 authors = ["Pratush Rai"]
@@ -22,6 +22,9 @@ colorful = "0.2.1"
 rainbow-text = "0.1.5"
 execute = "0.2.11"
 
+[[bin]]
+path = "src/main.rs"
+name = "runner"
 
 [profile.dev]
 opt-level = 0

@@ -275,7 +275,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "runner"
+name = "runner-cli"
 version = "0.1.0"
 dependencies = [
  "clap",
