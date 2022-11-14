@@ -2,6 +2,11 @@
 name = "runner"
 version = "0.1.0"
 edition = "2021"
+authors = ["Pratush Rai"]
+description = "A cli tool that let's you map commands to a shorter alias"
+license = "MIT"
+repository = "https://github.com/pratushrai0309/runner"
+keywords = ["cli", "clap", "productivity"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

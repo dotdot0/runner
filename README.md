@@ -1,7 +1,9 @@
 # Runner
 
 ## 🤔 What is this?
-A cli tool that let's you map commands to a shorter alias. Run the mapped command using the <ALIAS_NAME>
+A cli tool that let's you map commands to a shorter alias. Run the mapped command using the <ALIAS_NAME>.
+ Inspired by npm scripts.
+
 ```
 runner <ALIAS_NAME>
 ```
