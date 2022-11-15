@@ -19,8 +19,8 @@ clap = { version = "3.1.6", features = ["derive"] }
 dirs = "4.0.0"
 user-error = "1.2.8"
 colorful = "0.2.1"
-rainbow-text = "0.1.5"
 execute = "0.2.11"
+inquire = "0.5.2"
 
 [[bin]]
 path = "src/main.rs"

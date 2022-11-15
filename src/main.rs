@@ -1,15 +1,19 @@
 #![allow(unused)]
 
-mod commands;
+//Modules
+mod commands_parse;
 mod cli;
-extern crate colorful;
+mod add;
 
+//std
+use std::{process::Command, fs::File};
+
+//External crates
 use clap::Parser;
 use colorful::{Color, Colorful};
-use commands::CommandUser;
+use commands_parse::CommandUser;
 use cli::Cli;
 use dirs::config_dir;
-use std::{process::Command, fs::File};
 use user_error::{UserFacingError, UFE};
 use execute::Execute;
 
@@ -84,9 +88,9 @@ fn main() -> std::io::Result<()>{
  )   /) \/ (/    //    / ) _)  )   /
 (__\_)\____/\_)__)\_)__)(____)(__\_)
                              
- --------------------------------
- https://github.com/pratushrai0309/runner
-
+  ________________________________________
+: https://github.com/pratushrai0309/runner :
+ __________________________________________
 
          "#;
       println!("{}", art.gradient(Color::Green).bold()); 
@@ -102,7 +106,19 @@ fn main() -> std::io::Result<()>{
 
    else if args.config{
       let path = config_dir.join("runner.toml");
-      println!("The path to your runner.toml file: {:#?}", path.as_path());
+      if path.exists(){
+         println!("The path to your runner.toml file: {:#?}", path.as_path());
+      }
+      else{
+         UserFacingError::new("runner.toml file not found")
+               .reason("You have not initailized runner")
+               .help("Run runner --init to create a runner.toml file")
+               .print();
+      }
+   }
+
+   else if args.add{
+      add::add(&runner_path);
    }
    Ok(())
    

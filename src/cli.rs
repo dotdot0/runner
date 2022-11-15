@@ -17,5 +17,9 @@ pub struct Cli{
 
   #[clap(short='c', long)]
   ///Path of the the config file runner.toml
-  pub config: bool
+  pub config: bool,
+
+  #[clap(short='a', long)]
+  ///Map an new command to a alias right from terminal
+  pub add: bool
 }

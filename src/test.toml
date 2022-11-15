@@ -1,19 +1,24 @@
 [Command]
-alias = "gitadd"
+alias = "nv"
+program = "node"
+args = "-v"
+
+[Command]
+alias = "n"
+program = "neofetch"
+args = ""
+
+[Command]
+alias = "cc"
+program = "cargo"
+args = "check"
+
+[Command]
+alias = "gs"
 program = "git"
-args = "add ."
+args = "status"
 
 [Command]
-alias = "c"
-program = "code"
-args = "."
-
-[Command]
-alias = "ct"
-program = "cat"
-args = "main.rs"
-
-[Command]
-alias = "gitc"
-program = "git"
-args = "commit -m \"Inital Commit\""
+alias = "ci"
+program = "cargo"
+args = "install --path ."
