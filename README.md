@@ -54,7 +54,7 @@ runner --config
 
 ## 🗺️ Mappings
 
-### Get all the user mapped alias
+#### Get all the user mapped alias
 
 ```
 runner --mapping
