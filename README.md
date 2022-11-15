@@ -29,14 +29,14 @@ args = "check"
 ### Output: 
 ![ci](images/ci.png)
 
-## Installation
+## 📦 Installation
 ```
 cargo install runner-cli
 ```
 
 ## Initialize
 
-### It will initialize a empty runner.toml file in config directory
+#### It will initialize a empty runner.toml file in config directory
 
 ```
 runner --init
@@ -45,14 +45,14 @@ runner --init
 ![init](images/init.png)
 
 
-## Config
+## ⚙️ Config
 
-### Get the path to runner.toml file by running runner with config option
+#### Get the path to runner.toml file by running runner with config option
 ```
 runner --config
 ```
 
-## Mappings
+## 🗺️ Mappings
 
 ### Get all the user mapped alias
 
@@ -63,7 +63,7 @@ runner --mapping
 
 ![mapping](images/mapping.png)
 
-## Options:
+## 🖥️ Options:
 
 ```
     -c, --config     Path of the the config file runner.toml
@@ -73,9 +73,9 @@ runner --mapping
     -V, --version    Print version information
 ```
 
-## TOML file guide:
+## 📄 TOML file guide:
 
-## Each command starts wtih a [Command] key
+#### Each command starts wtih a [Command] key
 
 
 ```toml
@@ -86,4 +86,4 @@ args = "Arguments you want to pass to the cli program"
 ```
 
 ## Contribution
-### Have any suggestion or feature idea/request feel free to open a issue.
+#### Have any suggestion or feature idea/request feel free to open a issue.
