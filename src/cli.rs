@@ -20,6 +20,6 @@ pub struct Cli{
   pub config: bool,
 
   #[clap(short='a', long)]
-  ///Map an new command to a alias right from terminal
+  ///Map a new command to a alias right from terminal
   pub add: bool
 }

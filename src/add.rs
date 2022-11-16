@@ -1,27 +1,51 @@
 //std
-use std::fs::File;
+use std::fs::OpenOptions;
+use std::io::Write;
+use std::path::Path; 
 
 //External crates
 use inquire::Text;
+use user_error::{UserFacingError, UFE};
 
-use std::path::Path; 
+//project files
+use crate::commands_parse::CommandUser;
 
 pub fn add(path: &str) -> std::io::Result<()>{
-  let alias = Text::new("Alias: ").with_help_message("Alias").prompt().unwrap();
-  let program = Text::new("Program: ").with_help_message("Program").prompt().unwrap();
-  let args = Text::new("Args: ").with_help_message("args").prompt().unwrap();
+  let alias = Text::new("Alias:").with_help_message("Alias").prompt().unwrap();
+  let program = Text::new("Program:").with_help_message("cli Program").prompt().unwrap();
+  let args = Text::new("Args:").with_help_message("args").prompt().unwrap();
+
+  let buf = format!("
+[Command]
+alias = \"{alias}\"
+program = \"{program}\"
+args = \"{args}\"
+  ");
 
   let runner_path = Path::new(path);
 
   if runner_path.exists(){
-
+    let map_alias: Vec<String> = CommandUser::new().parse_toml(path).iter().map(|cmd| {
+      cmd.alias.to_owned()
+    }).collect();
+    if !map_alias.contains(&alias){
+      let mut file = OpenOptions::new().append(true).open(path).unwrap();
+      file.write(buf.as_bytes()).unwrap();
+      println!("Alias: {alias} added to runner.toml!")
+    }
+    else{
+      UserFacingError::new("Alias already exist")
+          .reason("You have already mapped the alias to a commnad")
+          .print()
+    }
+  }
+  else{
+    UserFacingError::new("runner.toml file not found")
+      .reason("You have not initialized runner")
+      .help("Run runner --init to create a runner.toml file")
+      .print();
   }
 
-  println!("
-  [Command]
-  alias = {alias}
-  program = {program}
-  args = {args}
-  ");
+
   Ok(())
 }

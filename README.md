@@ -59,13 +59,27 @@ runner --config
 ```
 runner --mapping
 ```
+
 ### Output: 
 
 ![mapping](images/mapping.png)
 
+## ➕ Add
+
+#### Map a new command to an alias right from the terminal
+
+```
+runner --add
+```
+
+### Output: 
+
+![add](images/add.png)
+
 ## 🖥️ Options:
 
 ```
+    -a, --add        Map a new command to a alias right from terminal
     -c, --config     Path of the the config file runner.toml
     -h, --help       Print help information
     -i, --init       Initialize a empty runner.toml file
