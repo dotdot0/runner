@@ -20,7 +20,7 @@ use user_error::{UserFacingError, UFE};
 pub struct CommandUser{
   pub alias: String,
   pub program: String,
-  pub args: String
+  pub args: Vec<String>
 }
 
 impl CommandUser{
@@ -28,7 +28,7 @@ impl CommandUser{
     Self{
       alias: String::new(),
       program: String::new(),
-      args: String::new()
+      args: Vec::new()
     }
   }
   pub fn parse_toml(&self, path: &str) -> Vec<CommandUser>{
@@ -88,7 +88,7 @@ impl CommandUser{
     let path_exist = Path::new(path).exists();
     for cmd in self.parse_toml(path){
       if path_exist{
-        println!("<ALIAS_NAME> : {} -> <COMMAND_MAPPED>: {} {}", cmd.alias, cmd.program, cmd.args)
+        println!("<ALIAS_NAME> : {} -> <COMMAND_MAPPED>: {} {}", cmd.alias, cmd.program, cmd.args.join(" "))
       }
       else{
         UserFacingError::new("runner.toml file don't exist in path")

@@ -40,14 +40,10 @@ fn main() -> std::io::Result<()>{
       //Check if runner.toml file is empty
       if map_cmd.len() > 0{
          for cmd in map_cmd{
-            let user_args: Vec<&str> = cmd.args.split(" ").map(|a| {
-               a
-            }).collect();
          
-         //Check
-         if cmd.alias.trim() == alias_user.as_str(){ 
-                              let mut result = Command::new(cmd.program);
-               for a in user_args{
+            if cmd.alias.trim() == alias_user.as_str(){ 
+               let mut result = Command::new(cmd.program);
+               for a in cmd.args{
                   result.arg(a);
                }
                let output = result.execute_output().unwrap();

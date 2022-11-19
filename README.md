@@ -12,17 +12,17 @@ An example runner.toml file:
 [Command]
 alias = "ci"
 program = "cargo"
-args = "install --path ."
+args = ["install", "--path", "."]
 
 [Command]
 alias = "nv"
 program = "node"
-args = "-v"
+args = ["-v"]
 
 [Command]
 alias = "cc"
 program = "cargo"
-args = "check"
+args = ["check"]
 
 ```
 ### An example run for [ci] alias
