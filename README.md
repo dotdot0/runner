@@ -3,10 +3,11 @@
 ## 🤔 What is this?
 A cli tool that let's you map commands to a shorter alias. Run the mapped command using the <ALIAS_NAME>.
 
-
 ```
 runner <ALIAS_NAME>
 ```
+<h3>You can map all your commands in runner.toml file</h3>
+
 An example runner.toml file:
 ```toml
 [Command]
