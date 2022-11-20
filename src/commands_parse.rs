@@ -88,7 +88,7 @@ impl CommandUser{
     let path_exist = Path::new(path).exists();
     for cmd in self.parse_toml(path){
       if path_exist{
-        println!("<ALIAS_NAME> : {} -> <COMMAND_MAPPED>: {} {}", cmd.alias, cmd.program, cmd.args.join(" "))
+        println!("<ALIAS_NAME> : {} -> <COMMAND_MAPPED> : {} {}", cmd.alias, cmd.program, cmd.args.join(" "))
       }
       else{
         UserFacingError::new("runner.toml file don't exist in path")

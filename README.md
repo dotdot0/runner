@@ -13,7 +13,7 @@ An example runner.toml file:
 [Command]
 alias = "ci"
 program = "cargo"
-args = ["install", "--path", "."]
+args = ["install", "lsd"]
 
 [Command]
 alias = "nv"
@@ -28,7 +28,7 @@ args = ["check"]
 ```
 ### An example run for [ci] alias
 ### Output: 
-![ci](images/ci.png)
+[![ci](images/ci.gif)
 
 ## 📦 Installation
 ```
@@ -43,7 +43,7 @@ cargo install runner-cli
 runner --init
 ```
 ### Output:
-![init](images/init.png)
+![init](images/init.gif)
 
 
 ## ⚙️ Config
@@ -75,7 +75,7 @@ runner --add
 
 ### Output: 
 
-![add](images/add.png)
+![add](images/add.gif)
 
 ## 🖥️ Options:
 
