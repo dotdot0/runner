@@ -11,12 +11,12 @@ use user_error::{UserFacingError, UFE};
 use crate::commands_parse::CommandUser;
 
 pub fn add(path: &str) -> std::io::Result<()>{
-  let alias = Text::new("Alias:").with_help_message("Alias").prompt().unwrap();
+  let alias = Text::new("Alias:").with_help_message("Alias").prompt().unwrap().trim().to_owned();
   let program = Text::new("Program:").with_help_message("cli Program").prompt().unwrap();
-  let args: Vec<String> = Text::new("Args:").with_help_message("like arg1 arg2")
+  let args: Vec<String> = Text::new("Args:").with_help_message("like arg1, arg2")
   .prompt()
-  .unwrap().split(" ").map(|a| {
-    a.to_owned()
+  .unwrap().split(",").map(|a| {
+    a.trim().to_owned()
   }).collect();
 
   let buf = format!("
