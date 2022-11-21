@@ -75,8 +75,8 @@ impl CommandUser{
         }
       }
   }else{
-    UserFacingError::new("runner.toml file not find")
-        .reason("You have not initialized runner")
+    UserFacingError::new("runner.toml file not found")
+        .reason("You have not initialized runner or have deleted the runner.toml file")
         .help("Run runner --init to create a runner.toml file")
         .print();
   }
@@ -86,16 +86,52 @@ impl CommandUser{
 
   pub fn display_mapping(&self, path: &str){
     let path_exist = Path::new(path).exists();
+
+    // if path_exist{
     for cmd in self.parse_toml(path){
-      if path_exist{
-        println!("<ALIAS_NAME> : {} -> <COMMAND_MAPPED> : {} {}", cmd.alias, cmd.program, cmd.args.join(" "))
-      }
-      else{
-        UserFacingError::new("runner.toml file don't exist in path")
-          .reason("You have not initialized runner")
-          .help("Run runner --init to create a runner.toml file")
-          .print();
-      }
+       println!("<ALIAS_NAME> : {} -> <COMMAND_MAPPED> : {} {}", cmd.alias, cmd.program, cmd.args.join(" "))
+    }
+    // }
+    // else{
+    //     UserFacingError::new("runner.toml file don't exist in path by mapping")
+    //       .reason("You have not initialized runner")
+    //       .help("Run runner --init to create a runner.toml file")
+    //       .print();
+    //   }
   }
-  }
-}
+
+  pub fn find_mapping(&self, path: &str, alias_name: String) -> Result<String, UserFacingError>{
+
+    let runner_path = Path::new(path);
+    let mut find_result = String::new();
+    let mut alias_vec: Vec<String> = Vec::new();
+    
+    if runner_path.exists(){
+      let user_commands = self.parse_toml(path);
+
+      alias_vec = user_commands.iter().map(|cmd| {
+        cmd.alias.to_owned()
+      }).collect();
+
+      for cmd in user_commands{
+        if cmd.alias == alias_name{
+          find_result = format!("Command mapped to alias [{alias_name}]: [{} {}]", cmd.program, cmd.args.join(" "));
+        }
+        else if !alias_vec.contains(&alias_name){
+          UserFacingError::new(format!("No command found mapped to the alias {alias_name}"))
+            .print();
+            break;
+        }
+      }
+    }
+    else{
+      return Err(UserFacingError::new("runner.toml file not found")
+          .reason("You have not initialized runner or have deleted the runner.toml file")
+          .help("Run runner --init to create a empty runner.toml file"));
+    }
+    Ok(find_result) 
+    } 
+  
+  } 
+
+  

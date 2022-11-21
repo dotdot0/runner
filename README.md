@@ -6,7 +6,7 @@ A cli tool that let's you map commands to a shorter alias. Run the mapped comman
 ```
 runner <ALIAS_NAME>
 ```
-<h3>You can map all your commands in runner.toml file</h3>
+You can map all your commands in runner.toml file
 
 An example runner.toml file:
 ```toml
@@ -35,7 +35,7 @@ args = ["check"]
 cargo install runner-cli
 ```
 
-## Initialize
+## 🏁 Initialize
 
 #### It will initialize a empty runner.toml file in config directory
 
@@ -77,11 +77,24 @@ runner --add
 
 ![add](images/add.gif)
 
+## 🔍 Find
+
+#### Find a command mapped to the given alias
+
+```
+runner --find <ALIAS_NAME>
+```
+
+### Output:
+
+![find](images/find.gif)
+
 ## 🖥️ Options:
 
 ```
     -a, --add        Map a new command to a alias right from terminal
     -c, --config     Path of the the config file runner.toml
+    -f, --find       Find a command mapped to the give alias
     -h, --help       Print help information
     -i, --init       Initialize a empty runner.toml file
     -m, --mapping    Show all the user defined mappings

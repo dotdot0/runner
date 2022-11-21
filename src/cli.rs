@@ -21,5 +21,9 @@ pub struct Cli{
 
   #[clap(short='a', long)]
   ///Map a new command to a alias right from terminal
-  pub add: bool
+  pub add: bool,
+
+  #[clap(short='f', long)]
+  ///Find a command mapped to the given alias
+  pub find: bool
 }
