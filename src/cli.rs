@@ -7,23 +7,26 @@ pub struct Cli{
   ///Alias Name
   pub alias: Option<String>,
 
-  #[clap(short='i', long)]
+  #[arg(short='i', long)]
   ///Initialize a empty runner.toml file
   pub init: bool,
 
-  #[clap(short='m', long)]
+  #[arg(short='m', long)]
   ///Show all the user defined mappings
   pub mapping: bool,
 
-  #[clap(short='c', long)]
+  #[arg(short='c', long)]
   ///Path of the the config file runner.toml
   pub config: bool,
 
-  #[clap(short='a', long)]
+  #[arg(short='a', long)]
   ///Map a new command to a alias right from terminal
   pub add: bool,
 
-  #[clap(short='f', long)]
+  #[arg(short='f', long="find")]
   ///Find a command mapped to the given alias
-  pub find: bool
+  pub find_alias: Option<String>,
+
+  #[arg(short, long)]
+  pub test: bool
 }

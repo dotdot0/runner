@@ -25,7 +25,8 @@ fn main() -> std::io::Result<()>{
    
    //Get all the user mapped commands
    let runner_path = format!("{}/runner.toml", config_dir.to_str().unwrap());
-   if args.alias.is_some() && std::env::args().nth(2).is_none(){
+   if args.alias.is_some(){
+
       //All parsed user mapped commands
       let map_cmd = CommandUser::new().parse_toml(runner_path.as_str());
 
@@ -117,20 +118,44 @@ fn main() -> std::io::Result<()>{
       add::add(&runner_path);
    }
 
-   else if args.find{
-      let mut find_args = std::env::args();
-      if find_args.len() == 3{
-         let alias_name = find_args.nth(2).unwrap(); 
-         match CommandUser::new().find_mapping(&runner_path, alias_name){
-            Ok(cmd) => println!("{cmd}"),
-            Err(e) => e.print()
-         }
+   else if args.find_alias.is_some(){
+      let alias = args.find_alias.unwrap();
+
+      match CommandUser::new().find_mapping(&runner_path, alias) {
+         Ok(f) => println!("{f}"),
+         Err(e) => e.print() 
       }
-      else{
-         UserFacingError::new("--find command accepts a <ALIAS_NAME> but none was provided")
-         .print()
-      }
+
+   }
+
+   else if args.test{
+      let mut cmd = Command::new("runner");
+
+      cmd.arg("--mapping");
+
+      let result = cmd.output().unwrap().stdout;
+      let output = String::from_utf8(result).unwrap();
+      println!("{output}")
    }
    Ok(())
    
+}
+
+
+#[cfg(test)]
+mod tests{
+    use std::process::Command;
+
+    use execute::Execute;
+
+   use dirs::config_dir;
+
+   #[test]
+   fn test_init(){
+      let mut cmd = Command::new("runner");
+      cmd.arg("--init");
+      let result = cmd.output().unwrap().stdout;
+      let runner_path = config_dir().unwrap().join("runner.toml");
+      assert_eq!(runner_path.exists(), true)
+   }
 }
