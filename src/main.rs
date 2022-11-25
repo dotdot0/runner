@@ -128,15 +128,15 @@ fn main() -> std::io::Result<()>{
 
    }
 
-   else if args.test{
-      let mut cmd = Command::new("runner");
+   else if args.available_name.is_some(){
+      let alias = args.available_name.unwrap();
 
-      cmd.arg("--mapping");
-
-      let result = cmd.output().unwrap().stdout;
-      let output = String::from_utf8(result).unwrap();
-      println!("{output}")
+      match CommandUser::new().avialable_alais(&runner_path, alias){
+         true => println!("👌 Avialable"),
+         false => println!("❌ Not Avialable")
+      }
    }
+
    Ok(())
    
 }
@@ -157,5 +157,14 @@ mod tests{
       let result = cmd.output().unwrap().stdout;
       let runner_path = config_dir().unwrap().join("runner.toml");
       assert_eq!(runner_path.exists(), true)
+   }
+   
+   fn test_find(){
+      let mut cmd = Command::new("runner");
+      cmd.arg("--find");
+      cmd.arg("ci");
+      let result = cmd.output().unwrap().stdout;
+      let data = String::from_utf8(result).unwrap();
+      assert_eq!(data, "Command mapped to alias [ci]: [cargo install lsd]")
    }
 }

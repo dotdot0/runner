@@ -27,6 +27,7 @@ pub struct Cli{
   ///Find a command mapped to the given alias
   pub find_alias: Option<String>,
 
-  #[arg(short, long)]
-  pub test: bool
+  #[arg(long = "available")]
+  ///Check if a alias is available to use
+  pub available_name: Option<String>
 }

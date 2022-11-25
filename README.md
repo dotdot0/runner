@@ -89,10 +89,17 @@ runner --find <ALIAS_NAME>
 
 ![find](images/find.gif)
 
+## Available 
+#### Check if a alias is available to use
+
+```
+runner --available <ALIAS_NAME>
+
 ## 🖥️ Options:
 
 ```
     -a, --add        Map a new command to a alias right from terminal
+        --available  Check if a alias is available to use
     -c, --config     Path of the the config file runner.toml
     -f, --find       Find a command mapped to the give alias
     -h, --help       Print help information

@@ -129,9 +129,19 @@ impl CommandUser{
           .reason("You have not initialized runner or have deleted the runner.toml file")
           .help("Run runner --init to create a empty runner.toml file"));
     }
+
     Ok(find_result) 
     } 
   
+  pub fn avialable_alais(&self, path: &str, alias_name: String) -> bool{
+    let alias: Vec<String> = self.parse_toml(path).iter().map(|a|{
+      a.alias.to_owned()
+    }).collect();
+    if alias.contains(&alias_name){
+      return false;
+    }
+    true
+  }
   } 
 
   
