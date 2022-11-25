@@ -1,6 +1,6 @@
 [package]
 name = "runner-cli"
-version = "0.1.5"
+version = "0.1.6"
 edition = "2021"
 authors = ["Pratush Rai"]
 description = "A cli tool that let's you map commands to a shorter alias"
