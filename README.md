@@ -75,7 +75,7 @@ runner --add
 
 ### Output: 
 
-![add](images/add.gif)
+![add_gif](images/add.gif)
 
 ## 🔍 Find
 
