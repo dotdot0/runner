@@ -87,10 +87,10 @@ impl CommandUser{
   pub fn display_mapping(&self, path: &str){
     let path_exist = Path::new(path).exists();
 
-    // if path_exist{
-    for cmd in self.parse_toml(path){
+    // if path_exist
+    self.parse_toml(path).into_iter().for_each(|cmd|{
        println!("<ALIAS_NAME> : {} -> <COMMAND_MAPPED> : {} {}", cmd.alias, cmd.program, cmd.args.join(" "))
-    }
+    })
     // }
     // else{
     //     UserFacingError::new("runner.toml file don't exist in path by mapping")
@@ -113,16 +113,16 @@ impl CommandUser{
         cmd.alias.to_owned()
       }).collect();
 
-      for cmd in user_commands{
+      user_commands.into_iter().for_each(|cmd|{
         if cmd.alias == alias_name{
           find_result = format!("Command mapped to alias [{alias_name}]: [{} {}]", cmd.program, cmd.args.join(" "));
         }
         else if !alias_vec.contains(&alias_name){
           UserFacingError::new(format!("No command found mapped to the alias {alias_name}"))
             .print();
-            break;
+            return;
         }
-      }
+      })
     }
     else{
       return Err(UserFacingError::new("runner.toml file not found")

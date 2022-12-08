@@ -28,7 +28,7 @@ args = ["check"]
 ```
 ### An example run for [ci] alias
 ### Output: 
-[![ci](images/ci.gif)
+<img src = "images/ci.gif">
 
 ## 📦 Installation
 ```
@@ -43,7 +43,7 @@ cargo install runner-cli
 runner --init
 ```
 ### Output:
-![init](images/init.gif)
+<img src = "images/init.gif">
 
 
 ## ⚙️ Config
@@ -63,7 +63,7 @@ runner --mapping
 
 ### Output: 
 
-![mapping](images/mapping.png)
+<img src = "images/mapping.png">
 
 ## ➕ Add
 
@@ -75,7 +75,7 @@ runner --add
 
 ### Output: 
 
-![add_gif](images/add.gif)
+<img src = "images/add.gif">)
 
 ## 🔍 Find
 
@@ -87,7 +87,7 @@ runner --find <ALIAS_NAME>
 
 ### Output:
 
-![find](images/find.gif)
+<img src = "images/find.gif">
 
 ## Available 
 #### Check if a alias is available to use
