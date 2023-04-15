@@ -104,7 +104,7 @@ fn main() -> std::io::Result<()>{
    else if args.config{
       let path = config_dir.join("runner.toml");
       if path.exists(){
-         println!("The path to your runner.toml file: {:#?}", path.as_path());
+         println!("{:#?}", path.as_path());
       }
       else{
          UserFacingError::new("runner.toml file not found")
@@ -132,8 +132,8 @@ fn main() -> std::io::Result<()>{
       let alias = args.available_name.unwrap();
 
       match CommandUser::new().avialable_alais(&runner_path, alias){
-         true => println!("👌 Avialable"),
-         false => println!("❌ Not Avialable")
+         true => println!("Avialable"),
+         false => println!("Not Avialable")
       }
    }
 
